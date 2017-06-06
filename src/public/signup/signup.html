@@ -1,0 +1,75 @@
+
+<link rel="stylesheet" href="css/form.css">
+<div class="container">
+
+  <div ng-if="signUpCtrl.submitted">Your information has been saved</div>
+
+  <fieldset>
+
+    <h3 ng-if="!signUpCtrl.isSaved">Registration</h3>
+    <h3 ng-if="signUpCtrl.isSaved">Your information has been saved. Thanks for registering!</h3>
+
+    <form name='regForm' novalidate>
+
+      <input type="text" name="firstname" placeholder="First name"
+        ng-model="signUpCtrl.userinfo.firstname"
+        required
+        minlength="1">
+        <!-- {{ signUpCtrl.userinfo.firstname }} -->
+        <span class="note"
+          ng-if="(regForm.firstname.$error.minlength || regForm.firstname.$error.required) && regForm.firstname.$touched">
+          You can't leave it empty
+        </span>
+        <br>
+
+
+        <input type="text" name="lastname" placeholder="Last name"
+          ng-model="signUpCtrl.userinfo.lastname"
+          required
+          minlength="1">
+          <!-- {{ signUpCtrl.userinfo.username }} -->
+          <span class="note"
+            ng-if="(regForm.lastname.$error.minlength || regForm.lastname.$error.required) && regForm.lastname.$touched">
+            You can't leave it empty
+          </span>
+          <br>
+
+
+      <input type="email" name="email" placeholder="Email"
+        ng-model="signUpCtrl.userinfo.email"
+        required>
+        <span class="note" ng-if="regForm.email.$invalid && regForm.email.$touched">
+          Must be a valid email address: handle@domain format
+        </span>
+        <br>
+
+      <input type="text" name="phone" placeholder="Phone ###-###-####"
+        ng-model="signUpCtrl.userinfo.phone"
+        required
+        pattern="(\d{3})-(\d{3})-(\d{4})">
+        <span class="note" ng-if="regForm.phone.$invalid && regForm.phone.$touched">
+          Phone must be in the format ###-###-####.
+        </span>
+        <br>
+
+
+        <input type="text" name="favouritedish" placeholder="Favourite dish's number"
+          ng-model="signUpCtrl.userinfo.favouritedish" ng-blur="signUpCtrl.isFavourite()">
+          <span  class="note" ng-if="signUpCtrl.invalidFavourite">
+            No such item exists, please look up in menu items (e.g. L1)</a>
+          </span>
+          <span class="note" ng-if="!signUpCtrl.invalidFavourite">
+            {{signUpCtrl.fdishName}}
+          </span>
+          <br>
+
+      <button
+        ng-disabled="regForm.$invalid"
+        ng-click="signUpCtrl.submit()">Submit</button>
+        <!-- <div style="margin-top: 10px;">
+          Form valid? {{ regForm.$valid }}
+        </div> -->
+    </form>
+  </fieldset>
+
+</div>

@@ -1,0 +1,14 @@
+<div class="container">
+
+  <h3 ng-if="!myInfoCtrl.userinfo"><a ui-sref="public.signup">Not Signed Up Yet! Please Sign Up Now!</a></h3>
+
+  <div ng-if="myInfoCtrl.userinfo">
+    <h4> Your registration details are as followings:</h4>
+    First name: {{ myInfoCtrl.userinfo.firstname}} <br>
+    Last name: {{ myInfoCtrl.userinfo.lastname}} <br>
+    Email: {{ myInfoCtrl.userinfo.email}} <br>
+    Phone: {{ myInfoCtrl.userinfo.phone }} <br>
+    Favorite dish number: {{ myInfoCtrl.userinfo.favouritedish}} ({{myInfoCtrl.fdishName}})
+  </div>
+
+</div>
